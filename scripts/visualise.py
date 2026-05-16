@@ -21,16 +21,18 @@ spark.stop()
 
 
 pdf.price.plot.hist(column='price')
-plt.savefig("figures/price-hist.png")
+plt.savefig("visualization-result/price-hist.png")
 
 pdf.category.value_counts().plot.bar()
-plt.savefig("figures/cat-bar.png")
+plt.savefig("visualization-result/cat-bar.png")
 
 pdf.plot.box(by='category', column='price', rot=90)
-plt.savefig("figures/cat-price.png")
+plt.savefig("visualization-result/cat-price.png")
 
 pdf.brand.value_counts().head().plot.bar(rot=90)
-plt.savefig("figures/brand-bar.png")
+plt.savefig("visualization-result/brand-bar.png")
 
 pdf.product_name.value_counts().head().plot.bar(rot=90)
-plt.savefig("figures/prod-bar.png")
+plt.savefig("visualization-result/prod-bar.png")
+
+spark.stop()

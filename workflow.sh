@@ -45,7 +45,7 @@ docker cp jupyter:/home/jovyan/preprocessing-result/. results
 
 # machine learning
 docker exec -it jupyter spark-submit /home/jovyan/machine-learning.py
-# what are the steps? docker cp jupyter:/home/jovyan/
+docker cp jupyter:/home/jovyan/machine-learning-result/. results
 
 # visualization
 docker exec -it jupyter spark-submit /home/jovyan/visualization.py
