@@ -37,20 +37,19 @@ docker cp scripts/machine-learning.py jupyter:/home/jovyan/
 docker cp scripts/visualization.py jupyter:/home/jovyan/
 
 # if create a brand-new results directory
-rm -r results
-mkdir results
+rm results/*
 
 # preprocesing
-docker exec -it jupyter python /home/jovyan/preprocessing.py
-docker cp jupyter:/home/jovyan/preprocessing-result/part-00000-_______ results/preprocessed-data.csv
+docker exec -it jupyter spark-submit /home/jovyan/preprocessing.py
+docker cp jupyter:/home/jovyan/preprocessing-result/. results
 
 # machine learning
-docker exec -it jupyter python /home/jovyan/machine-learning.py
+docker exec -it jupyter spark-submit /home/jovyan/machine-learning.py
 # what are the steps? docker cp jupyter:/home/jovyan/
 
 # visualization
-docker exec -it jupyter python /home/jovyan/visualization.py
-docker cp jupyter:/home/jovyan/visualization-result/*.png results/
+docker exec -it jupyter spark-submit /home/jovyan/visualization.py
+docker cp jupyter:/home/jovyan/visualization-result/. results
 
 # compose down containers
 cd compose-images && docker compose down && cd ..
