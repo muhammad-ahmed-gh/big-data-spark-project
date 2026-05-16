@@ -7,6 +7,7 @@ docker cp notebooks/machine-learning.ipynb jupyter:/home/jovyan/
 docker cp notebooks/visualization.ipynb jupyter:/home/jovyan/
 
 # start jupyter notebook server
+docker exec -it jupyter mkdir /home/jovyan/machine-learning-result
 docker exec -it jupyter jupyter server list
 echo copy the token from above output
 start http://localhost:8888
