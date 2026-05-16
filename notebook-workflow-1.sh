@@ -11,7 +11,7 @@ docker exec -it jupyter jupyter server list
 echo copy the token from above output
 start http://localhost:8888
 
-# now work on the preprocessing notebook first
-# then machine-learning notebook
-# then visualization notebook
-# after finishing all notebooks, run notebook-workflow-2.bat
+echo now work on the preprocessing notebook first
+echo then machine-learning notebook
+echo then visualization notebook
+echo after finishing all notebooks, run notebook-workflow-2.sh
