@@ -2,6 +2,7 @@
 
 :: copy results from jupyter container to local results directory
 rm results/*
+docker cp jupyter:/home/jovyan/preprocesing-result/. results
 docker cp jupyter:/home/jovyan/machine-learning-result/. results
 docker cp jupyter:/home/jovyan/visualization-result/. results
 
