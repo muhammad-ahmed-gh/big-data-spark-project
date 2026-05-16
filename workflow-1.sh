@@ -6,11 +6,14 @@ docker cp notebooks/preprocessing.ipynb jupyter:/home/jovyan/
 docker cp notebooks/machine-learning.ipynb jupyter:/home/jovyan/
 docker cp notebooks/visualization.ipynb jupyter:/home/jovyan/
 
+docker exec -it namenode hdfs dfs -rm -r /project-data/preprocessed-data
+
 # start jupyter notebook server
 docker exec -it jupyter mkdir /home/jovyan/machine-learning-result
+docker exec -it jupyter mkdir /home/jovyan/visualization-result
+start http://localhost:8888
 docker exec -it jupyter jupyter server list
 echo copy the token from above output
-start http://localhost:8888
 
 echo now work on the preprocessing notebook first
 echo then machine-learning notebook
