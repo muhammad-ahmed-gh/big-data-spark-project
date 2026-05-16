@@ -12,10 +12,19 @@
 # |__ compose-images/
 # |__ workflow.sh
 #
+# - jupyter container folder structure
+# /home/jovyan/
+# |__ preprocessing.py
+# |__ machine-learning.py
+# |__ visualization.py
+# |__ preprocessing-result/
+# |__ machine-learning-result/
+# |__ visualization-result/
+#
 # - hdfs already contains the 2GB raw data in /big-data-project-data/ecommerce.csv
-# - preprocessing.py saves the preprocessed data to jupyter:/preprocessed-data/part-00000-_____.csv
-# - machine-learning.py saves the result in <----------
-# - visualization.py saves the results to jupyter:/visualization-results/
+# - preprocessing.py saves the preprocessed data to jupyter:/home/jovyan/preprocessing-result/part-00000-_____.csv
+# - machine-learning.py saves the results to jupyter:/home/jovyan/machine-learning-result/*
+# - visualization.py saves the results to jupyter:/home/jovyan/visualization-result/*.png
 # - all the produced files are copied to the local directory: results
 
 # intialize containers
@@ -33,7 +42,7 @@ mkdir results
 
 # preprocesing
 docker exec -it jupyter python /home/jovyan/preprocessing.py
-docker cp jupyter:/home/jovyan/preprocessed-data/part-00000-_______ results/preprocessed-data.csv
+docker cp jupyter:/home/jovyan/preprocessing-result/part-00000-_______ results/preprocessed-data.csv
 
 # machine learning
 docker exec -it jupyter python /home/jovyan/machine-learning.py
@@ -41,7 +50,7 @@ docker exec -it jupyter python /home/jovyan/machine-learning.py
 
 # visualization
 docker exec -it jupyter python /home/jovyan/visualization.py
-docker cp jupyter:/home/jovyan/visualization-results/* results/
+docker cp jupyter:/home/jovyan/visualization-result/*.png results/
 
 # compose down containers
 cd compose-images && docker compose down && cd ..
