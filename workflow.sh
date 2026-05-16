@@ -40,8 +40,8 @@ docker cp scripts/visualization.py jupyter:/home/jovyan/
 rm results/*
 
 # preprocesing
+docker exec -it namenode hdfs dfs -rm -r /project-data/preprocessed-data
 docker exec -it jupyter spark-submit /home/jovyan/preprocessing.py
-docker cp jupyter:/home/jovyan/preprocessing-result/. results
 
 # machine learning
 docker exec -it jupyter spark-submit /home/jovyan/machine-learning.py
@@ -50,6 +50,3 @@ docker cp jupyter:/home/jovyan/machine-learning-result/. results
 # visualization
 docker exec -it jupyter spark-submit /home/jovyan/visualization.py
 docker cp jupyter:/home/jovyan/visualization-result/. results
-
-# compose down containers
-cd compose-images && docker compose down && cd ..

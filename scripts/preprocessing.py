@@ -96,6 +96,10 @@ print("event_time is now easier to deal with")
 print("\n============================")
 print("    End of Preprocessing    ")
 print("============================")
-print("")
-df.coalesce(1).write.csv("data", header=True)
+print("saving to hfds://namenode:9000/project-data/preprocessed-data/")
+df.coalesce(1).write \
+    .mode("overwrite") \
+    .option("header", True) \
+    .csv("hdfs://namenode:9000/project-data/preprocessed-data")
+print("done.")
 spark.stop()
